@@ -101,8 +101,8 @@ const Home = () => {
         <div className='w-full'>
           {
             currentPageData.map((item, index) => (
-              <div className='md:flex  items-center justify-center gap-7 mt-11' key={index}>
-                  <img className='w-[150px] h-full  object-cover' src={item.file || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWz9tftw9qculFH1gxieWkxL6rbRk_hrXTSg&s"} alt="" />
+              <div className='md:flex  items-center  justify-center gap-7 mt-11' key={index}>
+                  <img className='w-full md:w-[150px] m-auto h-full  object-cover' src={item.file || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWz9tftw9qculFH1gxieWkxL6rbRk_hrXTSg&s"} alt="" />
                 <div className=''>
                   <h4 className=' md:text-xl'>{item.title}</h4>
                   <p className='my-3 md:text-[16px]'>{item.description.slice(0, 200)}</p>
@@ -116,15 +116,17 @@ const Home = () => {
             ))
           }
       <div className='pagination-container md:mt-[200px]'>
-        { pageNumbers.map((number) => (
-          <button
-            key={number}
-            onClick={() => handlePageClick(number)}
-            className={`pagination-button text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 ${currentPage === number ? 'active' : ''}`}
-          >
-            {number + 1}
-          </button>
-        ))}
+      {currentPage > 3 && (
+          pageNumbers.map((number) => (
+            <button
+              key={number}
+              onClick={() => handlePageClick(number)}
+              className={`pagination-button text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 ${currentPage === number ? 'active' : ''}`}
+            >
+              {number + 1}
+            </button>
+          ))
+        )}
       </div>
         </div>
       </section>
