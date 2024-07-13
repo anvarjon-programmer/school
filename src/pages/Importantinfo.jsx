@@ -33,7 +33,7 @@ const Importantinfo = () => {
       </ul>
     </section>
 
-    <section className='mt-10 container px-4'>
+    {/* <section className='mt-10 container px-4'>
       <h2 className='text-center mb-6 md:text-3xl'>Ta’lim yo‘nalishlari</h2>
     <table class="border-collapse border border-gray-400  m-auto">
             <thead className='bg-[#268382]'>
@@ -131,7 +131,7 @@ const Importantinfo = () => {
                 </tr>
             </tbody>
         </table>
-    </section>
+    </section> */}
 
     {/* <section className='container w-full flex '>
       <div className='m-auto mt-8'>

@@ -1,14 +1,17 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-// import './carousel.css'; // Import the custom CSS file
 import Slider from "react-slick";
 import swagger from '../services/swagger-img';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import maktabRouteLink from '../services/MaktabRouteLinks';
 
 const Home = () => {
-  const [data,setData] = useState([])
+  const [data, setData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 3;
+
   var settings = {
     dots: false,
     infinite: true,
@@ -46,115 +49,85 @@ const Home = () => {
     ]
   };
 
-  useEffect(() =>{
-    const fetchFroduct = async () =>{
-      try{
-        const {data} = await axios.get("https://parsingbot.pythonanywhere.com")
-        setData(data)
+  useEffect(() => {
+    const fetchFroduct = async () => {
+      try {
+        const { data } = await axios.get("https://parsingbot.pythonanywhere.com");
+        setData(data);
         console.log(data);
-      }catch(error){
+      } catch (error) {
         console.log(error);
       }
     }
-    fetchFroduct()
-  },[])
+    fetchFroduct();
+  }, []);
+
+  const handlePageClick = (pageIndex) => {
+    setCurrentPage(pageIndex);
+  };
+
+  const offset = currentPage * itemsPerPage;
+  const currentPageData = data.slice(offset, offset + itemsPerPage);
+  const pageCount = Math.ceil(data.length / itemsPerPage);
+  const pageNumbers = [...Array(pageCount).keys()];
 
   return (
-    <div className=' w-full container pt-5 ttttt'>
+    <div className='w-full container pt-5 ttttt'>
       <div className='max-w-[1100px] m-auto'>
-      <Slider {...settings} className=' m-auto container'>
-        {
-          swagger.map((item, index) => (
-            <div key={index} className=' md:max-w-[300px] h-[200px] px-2'>
-              <img className='object-cover w-full h-full' src={item.img} alt="" />
-            </div>
-          ))
-        }
-      </Slider>
+        <Slider {...settings} className='m-auto container'>
+          {
+            swagger.map((item, index) => (
+              <div key={index} className='md:max-w-[300px] h-[200px] px-2'>
+                <img className='object-cover w-full h-full' src={item.img} alt="" />
+              </div>
+            ))
+          }
+        </Slider>
       </div>
-
-
-
-      <div className='px-6 mt-11'>
-  {/* <div className='flex items-baseline justify-between'>
-    <div className='max-w-[300px]'>
-      <ul className=''>
-        {[...Array(11)].map((_, index) => (
-          <li key={index} className='border-b border-[#732323] pb-2 font-semibold text-[20px]'>
-            <Link to={'/'}>BMSM directorining taqdimoti</Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-    <div className='max-w-[700px]'>
-      <h2 className='text-center'>Maktab yangiliklari</h2>
-      {data.map((item, index) => (
-        <div key={index}>
-          <div className='flex'>
-            <p>2024.14.06</p>
-            <p>
-              Ushbu o'quv dasturi 2015-yil 20-avgustdan boshlab O`zb.Res. Xalq ta'limi vazirligining 15-son (2 ilova) buyrug`i asosida tasdiqlangan. Bolalar musiqa va san'at maktabi umumta'lim maktabi bilan yaqin aloqada bo'lib, barkamol shaxsni tarbiyalashga yordam beradi. Bolalar musiqa va san'at maktabida o'qishning asosiy vazifasi o'quvchilarni badiiy madaniyatga jalb qilish, ularning tasviriy savodxonlik asoslarini o'rgatish, ularning estetik ta'limini tarbiyalash, shuningdek, o'rta maxsus ta'lim muassasalarida badiiy ta'limni davom ettirish uchun eng iqtidorli o'quvchilarni aniqlashdir.
-            </p>
-          </div>
-          <Link to={'/'} className='ml-[450px]'>Batafsil</Link>
+        <h1 className='text-center text-3xl my-10'>Maktab Tangliklari</h1>
+      <section className='px-5 flex justify-between gap-10'>
+        <div className=' max-w-[150px] md:max-w-[300px]'>
+          {
+            maktabRouteLink.map((item, index) => (
+              <li className='text-[10px] border-b border-black mt-3 pb-2 md:text-[18px]' key={index}>
+                <Link to={item.url}>{item.title}</Link>
+              </li>
+            ))
+          }
         </div>
-      ))}
-    </div>
-  </div> */}
 
-  <div class="wrapper">
-            <div class="wrapper-left-link">
-                <a href="#">BMSM directorining taqdimoti</a>
-                <a href="#">Maktab ko'rsatkichlari</a>
-                <a href="#">O'quvchilar uchun</a>
-                <a href="#">O'quvchilar havfsizligi</a>
-                <a href="#">Hamkorlik Memorandumlari</a>
-                <a href="#">Mehnat Muhofazasi</a>
-                <a href="#">Ota-onalar, Sizlar uchun!</a>
-                <a href="#">Bizning yutuqlar</a>
-                <a href="#">Bo'sh ish o'rinlari</a>
-                <a href="#">Musiqa va san'at olamida</a>
-                <a href="#">Ma'naviyat va Ma'rifat</a>
-                <a href="#">Virtual Qabulxona</a>
-            </div>
-            <div class="wrapper-right-content -mt-[50px]">
-                <div class="wrapper-right-first-box">
-                    <div class="wr-ri-first-box-title">
-                        <h1>Maktab yangiliklari</h1>
-                    </div>
-                    <div class="wr-ri-first-box-wrap">
-
-                        <div class="big">
-                            {/* <div class="box-top">
-                                <h2>20</h2>
-                            </div>
-                            <div class="box">
-                                <h2 class="h22w">may</h2>
-                            </div> */}
-                        </div>
-                        
-                        <div class="wr-ri-first-box-wrap-text ">
-                            {
-                              data.map((item,index) =>(
-                                <div className='mt-5'>
-                                  <Fragment>
-                                  <p>{item.description.slice(0,400)}</p>
-                                  <div className='w-full flex justify-end -mt-8'>
-                                  <a href="#" className=''>Batafsil</a>
-                                  </div>
-                                </Fragment>
-                                </div>
-                              ))
-                            }
-                        </div>
-                    </div>
+        <div className='w-full'>
+          {
+            currentPageData.map((item, index) => (
+              <div className='md:flex  items-center justify-center gap-7 mt-11' key={index}>
+                  <img className='w-[150px] h-full  object-cover' src={item.file || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWz9tftw9qculFH1gxieWkxL6rbRk_hrXTSg&s"} alt="" />
+                <div className=''>
+                  <h4 className=' md:text-xl'>{item.title}</h4>
+                  <p className='my-3 md:text-[16px]'>{item.description.slice(0, 200)}</p>
+                   <div className='flex items-center justify-end'>
+                   <Link to='/' className=''>
+                    <i>Batafsil</i>
+                   </Link>
+                   </div>
                 </div>
-                </div>
-            </div>
-</div>
-
+              </div>
+            ))
+          }
+      <div className='pagination-container md:mt-[200px]'>
+        { pageNumbers.map((number) => (
+          <button
+            key={number}
+            onClick={() => handlePageClick(number)}
+            className={`pagination-button text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 ${currentPage === number ? 'active' : ''}`}
+          >
+            {number + 1}
+          </button>
+        ))}
+      </div>
+        </div>
+      </section>
     </div>
   );
-};
+}; 
 
 export default Home;

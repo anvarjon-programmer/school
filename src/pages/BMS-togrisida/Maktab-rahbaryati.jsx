@@ -42,8 +42,8 @@ const MaktabRahbaryati = () => {
            <img className='w-full' src={img3} alt="" />
           </div>
           <div className='mt-7 md:mb-10'>
-            <h2 className='text-3xl font-bold'>O‘tbosarovIlhom Ihtiyor o‘g‘li</h2>
-            <h3 className='text-2xl my-3 font-medium'>34-sonli bolalar musiqa va san’at maktabi <br />direktorining xo‘jalik ishlari bo‘yicha o‘rinbosari</h3>
+            {/* <h2 className='text-3xl font-bold'>O‘tbosarovIlhom <br />Ihtiyor o‘g‘li</h2> */}
+            <h3 className='text-2xl my-3 font-medium'>34-sonli bolalar <br />musiqa va san’at maktabi <br />direktorining xo‘jalik <br />ishlari bo‘yicha o‘rinbosari</h3>
             <p className='text-xl'>Telefon: +998 55 901-54-34</p>
             <p className='text-xl my-1'>Qabul kunlari: Chorshanba - 1000 - 1200</p>
             <p className='text-xl'>Shanba - 1000 - 1200</p>
@@ -57,8 +57,8 @@ const MaktabRahbaryati = () => {
            <img className='w-full' src={img4} alt="" />
           </div>
           <div className='mt-7 md:mb-10'>
-            <h2 className='text-3xl font-bold'>Qambarov
-Ijobiddin Paxmiddinovich</h2>
+            {/* <h2 className='text-3xl font-bold'>Qambarov
+Ijobiddin Paxmiddinovich</h2> */}
             <h3 className='text-2xl my-3 font-medium'>34-sonli bolalar musiqa <br />va san’at maktabi bosh hisobchisi</h3>
             <p className='text-xl'>Telefon: +998 55 901-54-34</p>
             <p className='text-xl my-1'>Qabul kunlari: Seshanba - 1000 - 1200</p>
