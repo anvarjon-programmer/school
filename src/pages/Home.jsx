@@ -84,9 +84,10 @@ const Home = () => {
           }
         </Slider>
       </div>
-        <h1 className='text-center text-3xl my-10'>Maktab Tangliklari</h1>
+        <h1 className='text-center text-3xl my-10'>Maktab Yangliklari</h1>
       <section className='px-5 flex justify-between gap-10'>
-        <div className=' max-w-[150px] md:max-w-[300px]'>
+        <div className='hidden md:block'>
+        <div className=' max-w-[150px]  md:max-w-[300px] '>
           {
             maktabRouteLink.map((item, index) => (
               <li className='text-[10px] border-b border-black mt-3 pb-2 md:text-[18px]' key={index}>
@@ -94,6 +95,7 @@ const Home = () => {
               </li>
             ))
           }
+        </div>
         </div>
 
         <div className='w-full'>
